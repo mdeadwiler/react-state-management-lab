@@ -8,73 +8,73 @@ const App = () => {
   const [totalAgility, setTotalAgility] = useState(0); 
 
 
-const [zombieFighters, setZombieFighters] = useState([
+const [zombieFighters, setZombieFighters] = useState([ // This bugs me
   {
     name: 'Survivor',
-    price: 12,
+    price: 20,
     strength: 6,
     agility: 4,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT92sn1UHg_k0M_C0QEDCtUweRX1wPaADPaJA&s',
   },
   {
     name: 'Scavenger',
-    price: 10,
+    price: 5,
     strength: 5,
     agility: 5,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZx5YmCzFbe48iZ8lB21qCAyjwvqbYs9-ctw&s',
   },
   {
     name: 'Shadow',
-    price: 18,
+    price: 25,
     strength: 7,
     agility: 8,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoPwo2EwZTmO574srF1adLOLsWVGMbyDBpPw&s',
   },
   {
     name: 'Tracker',
-    price: 14,
+    price: 12,
     strength: 7,
     agility: 6,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVbgTYP3NFCuhDeJSZX2ebrBlUVrQ3s5OIOg&s',
   },
   {
     name: 'Sharpshooter',
-    price: 20,
+    price: 25,
     strength: 6,
     agility: 8,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD65cSYhzydTTt1ZphNw9NbLU5_kuq_BY0Eg&s',
   },
   {
     name: 'Medic',
-    price: 15,
+    price: 25,
     strength: 5,
     agility: 7,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ2quEQ--zS_pWxg9qBzEKSqUOwcTzsuRVTA&s',
   },
   {
     name: 'Engineer',
-    price: 16,
+    price: 12,
     strength: 6,
     agility: 5,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBhZh6KniC2tRGt4V-IWyUtoqJexwqGoESjg&s',
   },
   {
     name: 'Brawler',
-    price: 11,
+    price: 10,
     strength: 8,
     agility: 3,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCOcuWo2UDeSbYky7q_Gd2GVL3Xo6ecKUd7Q&s',
   },
   {
     name: 'Infiltrator',
-    price: 17,
+    price: 15,
     strength: 5,
     agility: 9,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqHo4TBC2nDwGPz9nT_0eDKdupA0rpWlbtg&s',
   },
   {
     name: 'Leader',
-    price: 22,
+    price: 20,
     strength: 7,
     agility: 6,
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdK877G1OryiWfz2U-F_3lTSKViJO2sslzdQ&s',
@@ -83,7 +83,7 @@ const [zombieFighters, setZombieFighters] = useState([
 // Function to handle adding a fighter to the team
 const handleAddFighter = (fighter) => {
   if (money >= fighter.price) {
-    setTeam([...team, fighter]); // Add fighter to team
+    setTeam([...team, fighter]); // Add fighter 
     setMoney(money - fighter.price); // Subtract price from money
     setTotalStrength(totalStrength + fighter.strength); // Update total strength
     setTotalAgility(totalAgility + fighter.agility); // Update total agility
@@ -92,13 +92,13 @@ const handleAddFighter = (fighter) => {
   }
 };
 
-// Function to handle removing a fighter from the team
+// This removes the fighter
 const handleRemoveFighter = (index) => {
   const removedFighter = team[index];
   setTeam(team.filter((_, i) => i !== index)); // Remove the fighter from team
-  setMoney(money + removedFighter.price); // Refund money
-  setTotalStrength(totalStrength - removedFighter.strength); // Update total strength
-  setTotalAgility(totalAgility - removedFighter.agility); // Update total agility
+  setMoney(money + removedFighter.price); // Refund money after fighter is removed
+  setTotalStrength(totalStrength - removedFighter.strength); // This will update strength
+  setTotalAgility(totalAgility - removedFighter.agility); // This will update agility
 };
 
 
@@ -122,14 +122,14 @@ return (
     ))}
   </ul>
 
-  <div className="team-section">
+  <div className="teammate-section">
     <h2>Your Team</h2>
     {team.length === 0 ? (
-      <p>Pick some team members!</p>
+      <p>Pick your Team!</p>
     ) : (
       <ul className="team-list">
         {team.map((fighter, i) => (
-          <li key={i} className="team-member">
+          <li key={i} className="teammate">
             <img src={fighter.img} alt={fighter.name} />
             <h3>{fighter.name}</h3>
             <p>Price: ${fighter.price}</p>
